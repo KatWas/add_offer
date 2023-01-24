@@ -8,7 +8,7 @@ router.route('/ads:random').get(AdsController.getRandom);
 
 router.route('/ads:id').get(AdsController.getById);
 
-router.route('/ads).post(AdsController.post);
+router.route('/ads').post(AdsController.post);
 
 router.route('/ads:id').put(AdsController.put)
 
