@@ -2,11 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
-const formidable = require('express-formidable');
+const session = require('express-session');
 const uniqid = require('uniqid');
 
 const passport = require('passport');
-const session = require('express-session');
+
 
 const adsRoutes = require('./routes/ads.routes');
 const authRoutes = require('./routes/auth.routes');
@@ -21,19 +21,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(session({ secret: 'anything' }));
+app.use(session({ secret: 'anything677', store: MongoStore.create(mongoose.connection) }));
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(formidable({ uploadDir: '/public/images/uploads/' }, [{
-  event: 'fileBegin', // on every file upload...
-  action: (req, res, next, name, file) => {
-    const fileName = uniqid() + '.' + file.name.split('.')[1];
-    file.path = __dirname + '/public/images/uploads/photo_' + fileName; // ...move the file to public/uploads with unique name
-  },
-},
-]));
 
 
 /* API ENDPOINTS */
