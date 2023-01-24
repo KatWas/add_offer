@@ -1,9 +1,19 @@
-const express = require ('express');
+const express = require('express');
+const passport = require('passport');
 const router = express.Router();
 
-const auth = require('../controllers/auth.controller');
+router.get('/google',
+  passport.authenticate('google', { scope: ['email', 'profile'] }));
 
-router.post('/register', auth.register);
-router.post('./login', auth.login);
+router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/user/no-permission' }),
+  (req, res) => {
+    res.redirect('/user/logged');
+  }
+);
+
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+});
 
 module.exports = router;

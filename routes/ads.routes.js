@@ -1,16 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const ConcertController = require('../controllers/adscontroller')
 
-router.route('/ads').get(AdsController.getAll);
+const ads = require('../controller/ads.controller');
 
-router.route('/ads:random').get(AdsController.getRandom);
-
-router.route('/ads:id').get(AdsController.getById);
-
-router.route('/ads').post(AdsController.post);
-
-router.route('/ads:id').put(AdsController.put)
-
+router.get('/ads', ads.load);
+router.post('/ads', ads.add);
+router.put('/ads/:id', ads.edit);
 
 module.exports = router;
