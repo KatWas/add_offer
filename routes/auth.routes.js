@@ -1,19 +1,11 @@
 const express = require('express');
-const passport = require('passport');
 const router = express.Router();
+const authMiddleware = require ('../utils/authMiddleware');
+const auth = require('../controllers/auth.controller');
+const imagaeUpload = require('../utils/imageUpload');
 
-router.get('/google',
-  passport.authenticate('google', { scope: ['email', 'profile'] }));
-
-router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/user/no-permission' }),
-  (req, res) => {
-    res.redirect('/user/logged');
-  }
-);
-
-router.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/');
-});
+router.post('/register'. imageUpload.single('avatar'),auth.register);
+router.post('/login', auth.login);
+router.get('/user', authMiddleware, auth.getUser);
 
 module.exports = router;
