@@ -1,0 +1,29 @@
+@import '../../../styles/settings.scss';
+
+.root {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+
+  .logoContainer {
+    width: 250px;
+    height: 50px;
+    display: flex;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      font-size: $base-size * 2;
+      color: $color-primary;
+      font-weight: bold;
+      margin: 5px 10px;
+      padding: 0;
+      span {
+        color: $color-secondary;
+      }
+    }
+  }
+}

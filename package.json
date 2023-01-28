@@ -53,6 +53,7 @@
     "enzyme-adapter-react-16": "^1.15.1",
     "express": "4.17.1",
     "express-session": "1.17.0",
+    "material-ui": "^0.20.2",
     "mongodb": "3.3.2",
     "mongoose": "5.7.1",
     "mongoose-findorcreate": "^3.0.0",
