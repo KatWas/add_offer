@@ -21,7 +21,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(session({ secret: 'anything677', store: MongoStore.create(mongoose.connection) }));
+app.use(session({ secret: 'something 23', store: MongoStore.create(mongoose.connection) }));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -49,7 +49,7 @@ app.use('*', (req, res) => {
 });
 
 /* MONGOOSE */
-mongoose.connect('mongodb://localhost:27017/bulletinBoard', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://cluster0.xcoialp.mongodb.net/?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority', { useNewUrlParser: true });
 const db = mongoose.connection;
 db.once('open', () => {
   console.log('Successfully connected to the database');
