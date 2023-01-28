@@ -1,0 +1,16 @@
+@import '../../../styles/settings.scss';
+
+.button {
+  background-color: $color-primary;
+  padding: 5px 40px;
+  border-radius: $radius;
+  margin: auto;
+  border: none;
+  font-family: $font-text;
+  font-size: ($base-size * 1.4);
+  color: $color-text-bright;
+  line-height: 1.7;
+  letter-spacing: 2px;
+  cursor: pointer;
+  margin-left: 10px;
+}

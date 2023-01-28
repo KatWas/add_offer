@@ -5,10 +5,17 @@ exports.register = async (req, res) => {
     try {
 
         const { login, password } = req.body;
-        if (login && typeof login === 'string' && password && typeof password === 'string') {
-            const userWithLogin = await User.findOne({ login });
-            if (userWithLogin) {
-                return res.status(409).send({ message: 'Usser with this login already excists' });
+        console.log(req.body, req.file);
+
+        if (login && typeof login === 'string' && password && typeof password === 'string' && req.file) {
+           const[, ext] = req.file.originalname.split('.');
+           if(ext !== 'jpg' && ext !== 'png' && ext !== 'jpeg'){
+            res.status(400).send({message: 'File extension in not correct'});
+           }  
+           
+           const userWithLogin = await User.findOne({ login });
+         if (userWithLogin) {
+            res.status(409).send({ message: 'Usser with this login already excists' });
             }
 
             const user = await User.create({ login, password: await bcrypt.hash(password, 10), avatar: req.file.filename });

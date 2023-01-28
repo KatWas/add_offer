@@ -1,0 +1,58 @@
+@import '../../../styles/settings.scss';
+
+.formContainer {
+  width: 1200px;
+  height: 100%;
+  background-color: $color-light;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  border-radius: ($radius / 2);
+  position: relative;
+  margin: auto;
+  padding: 0 50px 20px 50px;
+
+    h2 {
+      width: 100%;
+      color: $color-primary;
+    }
+
+    label {
+      display: block;
+      width: 100%;
+      margin: 20px 0;
+
+      span {
+        display: block;
+        color: $color-text;
+      }
+
+      .textInput, .numberInput, .textareaInput {
+        border-radius: ($radius / 2);
+        border: 1px solid $color-text-light;
+        height: 30px;
+        width: 350px;
+        font-family: $font-text;
+        font-size: ($base-size * 1.2);
+        padding: 15px;
+      }
+
+      .numberInput {
+        width: 100px;
+      }
+
+      .textareaInput {
+        height: 90px;
+      }
+    }
+
+    p {
+      width: 100%;
+      margin: 20px 0 0 0;
+    }
+
+    .error {
+      color: red;
+      font-size: $base-size;
+    }
+  }

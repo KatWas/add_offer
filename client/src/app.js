@@ -1,44 +1,43 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import React, {useEffect} from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-import { createMuiTheme, StylesProvider, ThemeProvider } from '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
+import { loadAdsRequest } from './redux/adsRedux';
 
-import { store } from './redux/store';
+import MainLayout from './components/layout/MainLayout/MainLayout';
+import Header from './components/layout/Header/Header';
 
-import { MainLayout } from './components/layout/MainLayout/MainLayout';
-import { Homepage } from './components/views/Homepage/Homepage';
-import { Post } from './components/views/Post/Post';
-import { PostEdit } from './components/views/PostEdit/PostEdit';
-import { PostAdd } from './components/views/PostAdd/PostAdd';
-import { NotFound } from './components/views/NotFound/NotFound';
+import Home from './components/views/Home/Home';
+import Ad from './components/views/Ad/Ad';
+import OwnAds from './components/features/OwnAds/OwnAds';
+import AddAd from './components/views/AddAd/AddAd';
+import EditAd from './components/views/EditAd/EditAd';
+import LoadUser from './components/features/LoadUser/LoadUser';
+import NoPermission from './components/views/NoPermission/NoPermission';
+import NotFound from './components/views/NotFound/NotFound';
 
-const theme = createMuiTheme({
-  palette: {
-    primary: { main: '#2B4C6F' },
-  },
-});
+function App() {
+  const dispatch = useDispatch();
 
-const App = () => (
-  <Provider store={store}>
-    <BrowserRouter>
-      <StylesProvider injectFirst>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <MainLayout>
-            <Switch>
-              <Route exact path='/' component={Homepage} />
-              <Route exact path='/post/add' component={PostAdd} />
-              <Route exact path='/post/:id' component={Post} />
-              <Route exact path='/post/:id/edit' component={PostEdit} />
-              <Route path='*' component={NotFound} />
-            </Switch>
-          </MainLayout>
-        </ThemeProvider>
-      </StylesProvider>
-    </BrowserRouter>
-  </Provider>
-);
+  useEffect(() => {
+    dispatch(loadAdsRequest());
+  }, [dispatch]);
 
-export { App };
+  return (
+    <MainLayout>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/ad/:id' element={<Ad />} />
+        <Route path='/ads/own' element={<OwnAds />} />
+        <Route path='/ad/add' element={<AddAd />} />
+        <Route path='/ad/edit/:id' element ={<EditAd />} />
+        <Route path='/user/logged' element={<LoadUser />} />
+        <Route path='user/no-permission' element={<NoPermission />} />
+        <Route path='*' element={<NotFound />} />
+      </Routes>
+    </MainLayout>
+  );
+}
+
+export default App;
