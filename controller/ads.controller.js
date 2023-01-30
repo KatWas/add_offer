@@ -13,16 +13,16 @@ exports.load = async (req, res) => {
 
 exports.add = async (req, res) => {
   try {
-    const file = req.files.file;
-    const title = req.fields.title;
-    const content = req.fields.content;
-    const price = req.fields.price;
-    const location = req.fields.location;
-    const published = req.fields.published;
-    const updated = req.fields.updated;
-    const author = req.fields.author;
-    const phone = req.fields.phone;
-    const status = req.fields.status;
+    const file = req.file;
+    const title = req.body.title;
+    const content = req.body.content;
+    const price = req.body.price;
+    const location = req.body.location;
+    const published = req.body.published;
+    const updated = req.body.updated;
+    const author = req.body.author;
+    const phone = req.body.phone;
+    const status = req.body.status;
 
     if (title.length >= 10 && content.length >= 20 && author && status) {
       let fileName;
@@ -40,17 +40,17 @@ exports.add = async (req, res) => {
 
 exports.edit = async (req, res) => {
   try {
-    const file = req.files.file;
-    const fileUrl = req.fields.file;
-    const title = req.fields.title;
-    const content = req.fields.content;
-    const price = req.fields.price;
-    const location = req.fields.location;
-    const published = req.fields.published;
-    const updated = req.fields.updated;
-    const author = req.fields.author;
-    const phone = req.fields.phone;
-    const status = req.fields.status;
+    const file = req.file;
+    const fileUrl = req.ds.file;
+    const title = req.body.title;
+    const content = req.body.content;
+    const price = req.body.price;
+    const location = req.body.location;
+    const published = req.body.published;
+    const updated = req.body.updated;
+    const author = req.body.author;
+    const phone = req.body.phone;
+    const status = req.body.status;
 
     if (title.length >= 10 && content.length >= 20 && author && status) {
 
